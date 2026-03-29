@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile  # Используем обычный Dockerfile для разработки
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    ports:
+      - "8080:8080"
+    command: make dev
+    
