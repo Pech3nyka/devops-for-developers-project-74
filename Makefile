@@ -1,39 +1,17 @@
-setup:
-	cp .env.example .env || true
-	npm install
+tests:
+	docker-compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yml up --abort-on-container-exit
 
-migrate:
-	npx sequelize db:migrate
+dev-setup:
+	docker-compose run --rm app make setup
 
-start:
-	npm start
+
+test-image:
+	docker run -p 8080:8080 -e NODE_ENV=development pech3nyka/devops-for-developers-project-74 make dev
+
 
 dev:
-	npm run dev
-
-test:
-	NODE_ENV=test npm test
-
-build:
-	npm run build
-
-docker-build:
-	docker compose build
-
-docker-setup:
-	docker compose run --rm app make setup
-
-docker-test:
-	docker compose -f docker-compose.yml run -e NODE_ENV=test --rm app make test
-
-docker-dev:
-	docker compose up
-
-docker-down:
-	docker compose down
+	docker-compose up
 
 ci:
-	docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from app
-
-code-setup:
-	make setup
+	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
