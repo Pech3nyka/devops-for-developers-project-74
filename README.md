@@ -1,6 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Pech3nyka/devops-for-developers-project-74/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Pech3nyka/devops-for-developers-project-74/actions)
-[![CI/CD Pipeline](https://github.com/pech3nyka/devops-for-developers-project-74/actions/workflows/push.yml/badge.svg)](https://github.com/pech3nyka/devops-for-developers-project-74/actions/workflows/push.yml)
+[![CI/CD Pipeline](https://github.com/Pech3nyka/devops-for-developers-project-74/actions/workflows/push.yml/badge.svg)](https://github.com/Pech3nyka/devops-for-developers-project-74/actions/workflows/push.yml)
 
 ## Описание
 
