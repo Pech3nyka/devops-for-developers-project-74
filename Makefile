@@ -33,3 +33,7 @@ docker-down:
 
 ci:
 	docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from app
+
+code-setup:
+	cp .env.example .env || true
+	make setup
