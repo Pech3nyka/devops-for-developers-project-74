@@ -1,36 +1,35 @@
 setup:
-npm install
+	npm install
 
 migrate:
-npx sequelize db:migrate
+	npx sequelize db:migrate
 
 start:
-npm start
+	npm start
 
 dev:
-npm run dev
+	npm run dev
 
 test:
-NODE_ENV=test npm test
+	NODE_ENV=test npm test
 
 build:
-npm run build
+	npm run build
 
-# Docker commands
 docker-build:
-docker-compose build
+	docker compose build
 
 docker-setup:
-docker-compose run --rm app make setup
+	docker compose run --rm app make setup
 
 docker-test:
-docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+	docker compose -f docker-compose.yml run -e NODE_ENV=test --rm app make test
 
 docker-dev:
-docker-compose up
+	docker compose up
 
 docker-down:
-docker-compose down
+	docker compose down
 
 ci:
-docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+	docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from app
