@@ -1,0 +1,10 @@
+{
+  "name": "devops-for-developers-project-74",
+  "version": "1.0.0",
+  "description": "DevOps project for Hexlet",
+  "scripts": {
+    "test": "cd app && npm test",
+    "start": "cd app && npm start",
+    "setup": "cd app && npm install"
+  }
+}

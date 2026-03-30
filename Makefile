@@ -40,5 +40,5 @@ code-setup:
 	npm install
 
 install:
-	@if [ ! -f .env ]; then cp .env.example .env; fi
-	npm install
+	cp .env.example .env || true
+	cd app && npm install
