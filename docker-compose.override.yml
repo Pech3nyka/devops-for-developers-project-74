@@ -1,14 +1,50 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: ./app
-      dockerfile: Dockerfile  # Используем обычный Dockerfile для разработки
+      dockerfile: Dockerfile
     volumes:
       - ./app:/app
       - /app/node_modules
-    ports:
-      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
     command: make dev
-    
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    restart: unless-stopped
+
+  db:
+    image: postgres:15  # Используем стабильную версию 15 вместо latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Оставляем как есть
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  caddy_data:
+  caddy_config:
+  postgres_data:
