@@ -1,8 +1,8 @@
 services:
   app:
     build:
-      context: ./app
-      dockerfile: Dockerfile.production
+      context: .
+      dockerfile: Dockerfile
     image: pech3nyka/devops-for-developers-project-74:latest
     depends_on:
       db:
@@ -13,7 +13,7 @@ services:
       - NODE_ENV=production
 
   db:
-    image: postgres:15  # Используем стабильную версию 15
+    image: postgres:15
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
