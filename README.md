@@ -4,7 +4,7 @@
 
 # Проект: Упаковка в Docker Compose
 
-Проект демонстрирует CI/CD пайплайн с Docker, GitHub Actions, reverse proxy (Caddy) и PostgreSQL.
+Блог создан с помощью Fastify с Docker и CI/CD
 
 ## Ссылка на Docker Hub
 
@@ -26,22 +26,33 @@
 
 ## Структура проекта
 
-- `app/` - исходник приложения
+- `app/` - исходник  приложения
 - `services/caddy/` - конфиг Caddy reverse proxy
 - `Dockerfile` - для разработки
 - `Dockerfile.production` - для production образа
 - `docker-compose.yml` - конфиг для тестов
 - `docker-compose.override.yml` - override конфига для разработки
 
+## Установка и запуск
+
+
+### Установка зависимостей
+
 ```bash
-# Установка зависимостей
-make setup
-
-# Запуск тестов
-make test
-
-# Запуск всех сервисов (app + caddy + postgres)
-make docker-dev
+make dev-setup
 ```
 
-После запуска приложение доступно по адресу: https://localhost
+### Запуск приложения с Caddy
+```bash
+make dev
+```
+
+> Приложение будет доступно:
+> - http://localhost
+> - https://localhost
+
+### Запуск тестов в Docker
+
+```bash
+make tests
+```
