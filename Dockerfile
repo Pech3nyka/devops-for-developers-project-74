@@ -2,10 +2,10 @@ FROM node:20.12.2
 
 WORKDIR /app
 
-COPY app/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-COPY app/. .
+COPY . .
 
 EXPOSE 8080
 
